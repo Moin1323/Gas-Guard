@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "968092830066",
+    "firebase_url": "https://gas-detection-ebdf9-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "gas-detection-ebdf9",
+    "storage_bucket": "gas-detection-ebdf9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968092830066:android:cd70b75a19dc53056875eb",
+        "android_client_info": {
+          "package_name": "com.exarth.gas_detection"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBakZwPY_V5zyUe168iKWwqXw3t8pz0t9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968092830066:android:9ff67d19358438056875eb",
+        "android_client_info": {
+          "package_name": "com.exarth.gas_guard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBakZwPY_V5zyUe168iKWwqXw3t8pz0t9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
