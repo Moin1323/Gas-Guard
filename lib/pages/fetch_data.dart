@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart'; // Lottie package for animations
 import '../api/firebase_api.dart';
+import 'notifications.dart';
 
 class FetchDataScreen extends StatefulWidget {
   const FetchDataScreen({super.key});
@@ -54,61 +55,70 @@ class _FetchDataScreenState extends State<FetchDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Gas Detection'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              // Handle notification icon tap
-              _firebaseApi.showNotification(
-                title: 'Notification',
-                body: 'Tap for details',
-              );
-            },
-          ),
-        ],
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Welcome Message
-            const Text(
-              'Welcome to the Gas Detection System',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+        padding: const EdgeInsets.all(20.0),
+        child: SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 30),
+              // Welcome Message
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Welcome',
+                    style: TextStyle(
+                      fontSize: 24,
+                      overflow: TextOverflow.ellipsis,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.notifications),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        NotificationScreen.route,
+                      );
+                    },
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-            // Centered Lottie Animation based on leakage status
-            isLeaking
-                ? Lottie.asset('assets/lottie/gas_leak.json', width: 200)
-                : Lottie.asset('assets/lottie/gas_safe.json', width: 200),
+              // Centered Lottie Animation based on leakage status
+              isLeaking
+                  ? Icon(Icons.warning, color: Colors.red, size: 300)
+                  : Icon(Icons.gas_meter, color: Colors.green, size: 300),
 
-            const SizedBox(height: 30),
+              const SizedBox(height: 30),
 
-            // Display Gas Level
-            Text(
-              'Gas Sensor Level: $gasLevel',
-              style: const TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 10),
+              // Display Gas Level
+             SizedBox(
+               child: Column(
+                 children: [
+                   Text(
+                     'Gas Sensor Level: $gasLevel',
+                     style: const TextStyle(fontSize: 18),
+                   ),
+                   const SizedBox(height: 10),
 
-            // Display Leakage Status with appropriate color
-            Text(
-              'Leakage Status: ${isLeaking ? "Leaking" : "Safe"}',
-              style: TextStyle(
-                fontSize: 18,
-                color: isLeaking ? Colors.red : Colors.green,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+                   // Display Leakage Status with appropriate color
+                   Text(
+                     'Leakage Status: ${isLeaking ? "Leaking" : "Safe"}',
+                     style: TextStyle(
+                       fontSize: 18,
+                       color: isLeaking ? Colors.red : Colors.green,
+                       fontWeight: FontWeight.bold,
+                     ),
+                   ),
+                 ],
+               ),
+             )
+            ],
+          ),
         ),
       ),
     );

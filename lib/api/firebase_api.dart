@@ -58,8 +58,17 @@ class FirebaseApi {
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
   void handleMessage(RemoteMessage? message) {
+    final NotificationService _notificationService = NotificationService();
     if (message == null) return;
 
+    final newNotification = NotificationModel(
+      title: message.notification?.title ?? 'No Title',
+      body: message.notification?.body ?? 'No Body',
+      data: message.data,
+      timestamp: DateTime.now(),
+    );
+
+    _notificationService.saveNotification(newNotification);
     navigatorKey.currentState?.pushNamed(
       NotificationScreen.route,
       arguments: message,
